@@ -25,7 +25,7 @@ class UserViewsTestCase(TestCase):
 
         User.query.delete()
 
-        user = User(first_name="User1", last_name="Last1", image_url="https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg")
+        user = User(first_name="User1", last_name="Last1", image_url="https://images.unsplash.com/photo-1621516829665-a5ba55525542?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80")
         db.session.add(user)
         db.session.commit()
 
@@ -55,7 +55,7 @@ class UserViewsTestCase(TestCase):
 
     def test_new_user(self):
         with app.test_client() as client:
-            d = {"first": "TestUser2", "last": "USER2", "image": "https://d210waafu5nnsw.cloudfront.net/fad1ff76-801d-4adb-be70-9ddfacfeda88/images/u6d9829361827_original_opt.jpeg?What%20is%20an%20HTTP%20405%20Error%20and%20How%20Can%20You%20Fix%20It"}
+            d = {"first": "TestUser2", "last": "USER2", "image": "https://images.unsplash.com/photo-1621865881868-b9d5586b25b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"}
             resp = client.post("/new", data=d, follow_redirects=True)
             html = resp.get_data(as_text=True)
 
