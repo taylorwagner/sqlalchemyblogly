@@ -55,9 +55,9 @@ class UserViewsTestCase(TestCase):
 
     def test_new_user(self):
         with app.test_client() as client:
-            d = {"first_name": "TestUser2", "last_name": "USER2", "image_url": "https://d210waafu5nnsw.cloudfront.net/fad1ff76-801d-4adb-be70-9ddfacfeda88/images/u6d9829361827_original_opt.jpeg?What%20is%20an%20HTTP%20405%20Error%20and%20How%20Can%20You%20Fix%20It"}
-            resp = client.post("/", data=d, follow_redirects=True)
+            d = {"first": "TestUser2", "last": "USER2", "image": "https://d210waafu5nnsw.cloudfront.net/fad1ff76-801d-4adb-be70-9ddfacfeda88/images/u6d9829361827_original_opt.jpeg?What%20is%20an%20HTTP%20405%20Error%20and%20How%20Can%20You%20Fix%20It"}
+            resp = client.post("/new", data=d, follow_redirects=True)
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn("<li>TestUser2 USER2</li>", html)
+            self.assertIn("TestUser2 USER2", html)
