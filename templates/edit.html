@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit {{user.full_name}}</title>
+</head>
+<body>
+    <h1>Edit a user</h1>
+<form method="POST">
+
+  <div>
+    <label for="first">First Name</label>
+    <div>
+      <input type="text"
+             id="first"
+             name="first"
+             value="{{ user.first }}">
+    </div>
+  </div>
+
+  <div>
+    <label for="last">Last Name</label>
+    <div>
+      <input type="text"
+             id="last"
+             name="last"
+             value="{{ user.last }}">
+    </div>
+  </div>
+
+  <div>
+    <label for="image">Image URL</label>
+    <div>
+      <input type="text"
+             id="image"
+             name="image"
+             value="{{ user.image }}">
+    </div>
+  </div>
+
+  <div>
+    <a href="/">Cancel</a>
+    <button type="submit">Save</button>
+  </div>
+
+</form>
+</body>
+</html>
