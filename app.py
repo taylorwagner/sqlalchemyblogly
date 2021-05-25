@@ -87,6 +87,8 @@ def users_destroy(user_id):
 
     return redirect("/")
 
+#### Part 2 Starts Here
+
 @app.route('/<int:user_id>/posts/new')
 def new_post(user_id):
     """Show form to add a post for that user."""
@@ -115,3 +117,37 @@ def post_details(post_id):
     post = Post.query.get_or_404(post_id)
 
     return render_template('show-post.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit')
+def users_edit(user_id):
+    """Show a form to edit an existing user"""
+
+    post = Post.query.get_or_404(post_id)
+
+    return render_template('edit-post.html', post=post)
+
+
+@app.route('/posts/<int:post_id>/edit', methods=["POST"])
+def users_update(user_id):
+    """Handle form submission for updating an existing user"""
+
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form['first']
+    user.last_name = request.form['last']
+    user.image_url = request.form['image']
+
+    db.session.add(user)
+    db.session.commit()
+
+    return redirect("/")
+
+
+@app.route('/posts/<int:post_id>/delete', methods=["POST"])
+def users_destroy(user_id):
+    """Handle form submission for deleting an existing user"""
+
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect("/")
