@@ -1,6 +1,6 @@
 """Blogly application."""
 
-from flask import Flask, request, render_template,  redirect
+from flask import Flask, request, render_template,  redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
 
@@ -94,3 +94,16 @@ def new_post(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('new-post.html', user=user)
 
+
+@app.route('/<int:user_id>/posts/new', methods=["POST"])
+def post_update(user_id):
+    """Handle add form; add post and redirect to the user detail page."""
+
+    user = User.query.get_or_404(user_id)
+    new_post = Post(title=request.form['title'], content=request.form['content'], user=user)
+
+    db.session.add(new_post)
+    db.session.commit()
+    flash(f"Post '{new_post.title}' added!")
+
+    return redirect("/")
