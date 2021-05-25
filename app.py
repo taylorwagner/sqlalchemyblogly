@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template,  redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 
 app = Flask(__name__)
 
@@ -50,7 +50,9 @@ def users_show(user_id):
     """Show a page with info on a specific user"""
 
     user = User.query.get_or_404(user_id)
-    return render_template('show.html', user=user)
+    post = Post.query.all()
+
+    return render_template('show.html', user=user, post=post)
 
 
 @app.route('/<int:user_id>/edit')

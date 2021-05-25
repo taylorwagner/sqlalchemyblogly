@@ -30,8 +30,8 @@ post1 = Post(title="Yes!!", content="I am so excited!", user_id=4)
 post2 = Post(title="No!!", content="Please not me!", user_id=4)
 post3 = Post(title="Maybe", content="I'll see what I can do", user_id=1)
 post4 = Post(title="Sure", content="What does that even mean?", user_id=3)
-post5 = Post(title="Love", content="God is love", user_id=8)
-post6 = Post(title="Uncertainty", content="Who knows??", user_id=8)
+post5 = Post(title="Love", content="God is love", user_id=2)
+post6 = Post(title="Uncertainty", content="Who knows??", user_id=2)
 
 # Add new objects to session, so they'll persist
 db.session.add_all([post1, post2, post3, post4, post5, post6])

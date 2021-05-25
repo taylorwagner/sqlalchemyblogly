@@ -62,3 +62,7 @@ class Post(db.Model):
         """Return nicely-formatted date."""
 
         return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")
+
+    def __repr__(self):
+        p = self
+        return f"<Post id={p.id} title={p.title} content={p.content} created_at={p.created_at} user_id={p.user_id}>"
