@@ -89,7 +89,7 @@ def users_destroy(user_id):
 
 #### Part 2 Starts Here
 
-@app.route('/<int:user_id>/posts/new')
+@app.route('/users/<int:user_id>/posts/new')
 def new_post(user_id):
     """Show form to add a post for that user."""
 
@@ -97,7 +97,7 @@ def new_post(user_id):
     return render_template('new-post.html', user=user)
 
 
-@app.route('/<int:user_id>/posts/new', methods=["POST"])
+@app.route('/users/<int:user_id>/posts/new', methods=["POST"])
 def post_create(user_id):
     """Handle add form; add post and redirect to the user detail page."""
 
@@ -108,7 +108,7 @@ def post_create(user_id):
     db.session.commit()
     flash(f"Post '{new_post.title}' added!")
 
-    return redirect(f"/{user_id}")
+    return redirect(f"/users/{user_id}")
 
 @app.route('/posts/<int:post_id>')
 def post_details(post_id):
@@ -139,7 +139,7 @@ def handle_post_update(post_id):
     db.session.commit()
     flash(f"Post ' {post.title}' edited!")
 
-    return redirect(f"/{post.user_id}")
+    return redirect(f"/users/{post.user_id}")
 
 
 @app.route('/posts/<int:post_id>/delete', methods=["POST"])
@@ -151,4 +151,4 @@ def post_destroy(post_id):
     db.session.commit()
     flash(f"Post '{post.title}' is gone forever!!")
 
-    return redirect(f"/{post.user_id}")
+    return redirect(f"/users/{post.user_id}")
