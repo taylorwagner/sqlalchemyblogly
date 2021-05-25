@@ -15,7 +15,7 @@
             <p><i>By {{post.user.first_name}} {{post.user.last_name}}</i></p>
 
             <form action="">
-                <button formaction="/{{post.user_id}}">Cancel</button>
+                <button formaction="/users/{{post.user_id}}">Cancel</button>
 
                 <button formaction="/posts/{{post.id}}/edit" formmethod="GET">Edit</button>
 
