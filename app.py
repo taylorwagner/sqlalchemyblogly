@@ -128,7 +128,7 @@ def post_edit(post_id):
 
 
 @app.route('/posts/<int:post_id>/edit', methods=["POST"])
-def post_update(post_id):
+def handle_post_update(post_id):
     """Handle editing of a post. Redirect back to the post view."""
 
     post = Post.query.get_or_404(post_id)
