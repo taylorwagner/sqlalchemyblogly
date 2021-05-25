@@ -1,3 +1,4 @@
+import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -36,3 +37,28 @@ class User(db.Model):
     def __repr__(self):
         u = self
         return f"<User id={u.id} first={u.first_name} last={u.last_name} image={u.image_url}>"
+
+class Post(db.Model):
+    """Blog posts by users"""
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+
+    title = db.Column(db.Text,
+                     nullable=False)
+
+    content = db.Column(db.Text, nullable=False)
+
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+    usr = db.relationship('User', backref='posts')
+
+    @property
+    def friendly_date(self):
+        """Return nicely-formatted date."""
+
+        return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")
