@@ -132,22 +132,23 @@ def post_update(post_id):
     """Handle editing of a post. Redirect back to the post view."""
 
     post = Post.query.get_or_404(post_id)
-    # user.first_name = request.form['first']
-    # user.last_name = request.form['last']
-    # user.image_url = request.form['image']
+    post.title = request.form['title']
+    post.content = request.form['content']
 
-    # db.session.add(user)
+    db.session.add(post)
     db.session.commit()
+    flash(f"Post ' {post.title}' edited!")
 
-    return redirect("/")
+    return redirect("/{post.user_id}")
 
 
 @app.route('/posts/<int:post_id>/delete', methods=["POST"])
 def post_destroy(post_id):
-    """Delete the post."""
+    """Handle form submission for deleting an existing post"""
 
     post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
+    flash(f"Post '{post.title}' is gone forever!!")
 
-    return redirect("/")
+    return redirect("/{post.user_id}")
