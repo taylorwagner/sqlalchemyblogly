@@ -17,21 +17,21 @@ connect_db(app)
 db.create_all()
 
 
-@app.route('/')
+@app.route('/users')
 def list_users():
     """Shows list of all users in db"""
     users = User.query.order_by(User.last_name, User.first_name).all()
     return render_template('list.html', users=users)
 
 
-@app.route('/new', methods=["GET"])
+@app.route('/users/new', methods=["GET"])
 def create_user():
     """Show a form to create a new user"""
     
     return render_template('new.html')
 
 
-@app.route('/new', methods=["POST"])
+@app.route('/users/new', methods=["POST"])
 def new_user():
     """Handle form submission for creating a new user"""
     first = request.form["first"]
@@ -42,10 +42,10 @@ def new_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect('/')
+    return redirect('/users')
 
 
-@app.route('/<int:user_id>')
+@app.route('/users/<int:user_id>')
 def users_show(user_id):
     """Show a page with info on a specific user"""
 
@@ -54,7 +54,7 @@ def users_show(user_id):
     return render_template('show.html', user=user)
 
 
-@app.route('/<int:user_id>/edit')
+@app.route('/users/<int:user_id>/edit')
 def users_edit(user_id):
     """Show a form to edit an existing user"""
 
@@ -62,7 +62,7 @@ def users_edit(user_id):
     return render_template('edit.html', user=user)
 
 
-@app.route('/<int:user_id>/edit', methods=["POST"])
+@app.route('/users/<int:user_id>/edit', methods=["POST"])
 def users_update(user_id):
     """Handle form submission for updating an existing user"""
 
@@ -74,10 +74,10 @@ def users_update(user_id):
     db.session.add(user)
     db.session.commit()
 
-    return redirect("/")
+    return redirect("/users")
 
 
-@app.route('/<int:user_id>/delete', methods=["POST"])
+@app.route('/users/<int:user_id>/delete', methods=["POST"])
 def users_destroy(user_id):
     """Handle form submission for deleting an existing user"""
 
@@ -85,7 +85,7 @@ def users_destroy(user_id):
     db.session.delete(user)
     db.session.commit()
 
-    return redirect("/")
+    return redirect("/users")
 
 #### Part 2 Starts Here
 
