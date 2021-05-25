@@ -119,8 +119,8 @@ def post_details(post_id):
     return render_template('show-post.html', post=post)
 
 @app.route('/posts/<int:post_id>/edit')
-def users_edit(user_id):
-    """Show a form to edit an existing user"""
+def post_edit(post_id):
+    """Show form to edit a post, and to cancel (back to user page)."""
 
     post = Post.query.get_or_404(post_id)
 
@@ -128,26 +128,26 @@ def users_edit(user_id):
 
 
 @app.route('/posts/<int:post_id>/edit', methods=["POST"])
-def users_update(user_id):
-    """Handle form submission for updating an existing user"""
+def post_update(post_id):
+    """Handle editing of a post. Redirect back to the post view."""
 
-    user = User.query.get_or_404(user_id)
-    user.first_name = request.form['first']
-    user.last_name = request.form['last']
-    user.image_url = request.form['image']
+    post = Post.query.get_or_404(post_id)
+    # user.first_name = request.form['first']
+    # user.last_name = request.form['last']
+    # user.image_url = request.form['image']
 
-    db.session.add(user)
+    # db.session.add(user)
     db.session.commit()
 
     return redirect("/")
 
 
 @app.route('/posts/<int:post_id>/delete', methods=["POST"])
-def users_destroy(user_id):
-    """Handle form submission for deleting an existing user"""
+def post_destroy(post_id):
+    """Delete the post."""
 
-    user = User.query.get_or_404(user_id)
-    db.session.delete(user)
+    post = Post.query.get_or_404(post_id)
+    db.session.delete(post)
     db.session.commit()
 
     return redirect("/")
