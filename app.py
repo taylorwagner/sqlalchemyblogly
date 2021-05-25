@@ -108,10 +108,10 @@ def post_update(user_id):
 
     return redirect("/")
 
-@app.route('/<int:post_id>')
-def post_details(post_id:
+@app.route('/posts/<int:post_id>')
+def post_details(post_id):
     """Show a post. Show buttons to edit and delete the post."""
 
     post = Post.query.get_or_404(post_id)
 
-    return render_template('show.html', post=post)
+    return render_template('show-post.html', post=post)
