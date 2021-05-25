@@ -86,3 +86,11 @@ def users_destroy(user_id):
     db.session.commit()
 
     return redirect("/")
+
+@app.route('/<int:user_id>/posts/new')
+def new_post(user_id):
+    """Show form to add a post for that user."""
+
+    user = User.query.get_or_404(user_id)
+    return render_template('new-post.html', user=user)
+
