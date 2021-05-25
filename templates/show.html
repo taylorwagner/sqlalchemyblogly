@@ -24,6 +24,22 @@
             </form>
         </div>
     </div>
+
+    <div>
+        <h2>Posts</h2>
+        <div>
+            <ul>
+                {% if user.title %}
+                <li><a href="">{{ user.title }}</a></li>
+                {% else %}
+                <li>{{ user.full_name }} hasn't created any posts yet!</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+
+
     <p><a href="/">Go Back to All Users</a></p>
 </body>
 </html>
