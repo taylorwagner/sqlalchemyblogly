@@ -98,7 +98,7 @@ def new_post(user_id):
 
 
 @app.route('/<int:user_id>/posts/new', methods=["POST"])
-def post_update(user_id):
+def post_create(user_id):
     """Handle add form; add post and redirect to the user detail page."""
 
     user = User.query.get_or_404(user_id)
@@ -108,7 +108,7 @@ def post_update(user_id):
     db.session.commit()
     flash(f"Post '{new_post.title}' added!")
 
-    return redirect("/")
+    return redirect("/{user_id}")
 
 @app.route('/posts/<int:post_id>')
 def post_details(post_id):
