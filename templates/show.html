@@ -28,14 +28,23 @@
     <div>
         <h2>Posts</h2>
         <div>
+            {% if user.posts %}
             <ul>
-                {% if post.title %}
-                <li><a href="">{{ post.title }}</a></li>
+                {% for post in user.posts %}
+                <li>
+                    <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul> 
                 {% else %}
-                <li>{{ user.full_name }} hasn't created any posts yet!</li>
+                <p>{{ user.full_name }} hasn't created any posts yet!</p>
                 {% endif %}
-            </ul>
         </div>
+
+        <form action="">
+        <button>Add Post!</button>
+        </form>
+        
     </div>
 
     <p><a href="/">Go Back to All Users</a></p>

@@ -55,7 +55,7 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    usr = db.relationship('User', backref='posts')
+    user = db.relationship('User', backref='posts')
 
     @property
     def friendly_date(self):

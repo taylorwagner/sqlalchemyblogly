@@ -50,9 +50,8 @@ def users_show(user_id):
     """Show a page with info on a specific user"""
 
     user = User.query.get_or_404(user_id)
-    post = Post.query.all()
 
-    return render_template('show.html', user=user, post=post)
+    return render_template('show.html', user=user)
 
 
 @app.route('/<int:user_id>/edit')
