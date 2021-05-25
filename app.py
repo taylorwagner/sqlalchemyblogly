@@ -108,7 +108,7 @@ def post_create(user_id):
     db.session.commit()
     flash(f"Post '{new_post.title}' added!")
 
-    return redirect("/{user_id}")
+    return redirect(f"/{user_id}")
 
 @app.route('/posts/<int:post_id>')
 def post_details(post_id):
@@ -139,7 +139,7 @@ def handle_post_update(post_id):
     db.session.commit()
     flash(f"Post ' {post.title}' edited!")
 
-    return redirect("/{post.user_id}")
+    return redirect(f"/{post.user_id}")
 
 
 @app.route('/posts/<int:post_id>/delete', methods=["POST"])
@@ -151,4 +151,4 @@ def post_destroy(post_id):
     db.session.commit()
     flash(f"Post '{post.title}' is gone forever!!")
 
-    return redirect("/{post.user_id}")
+    return redirect(f"/{post.user_id}")
