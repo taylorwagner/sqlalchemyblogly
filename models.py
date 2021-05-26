@@ -28,6 +28,8 @@ class User(db.Model):
 
     image_url = db.Column(db.Text, nullable=False, default=DEFAULT_IMAGE_URL)
 
+    posts = db.relationship("Post", backref="user", cascade="all, delete-orphan")
+
     @property
     def full_name(self):
         """Return full name of the user"""
@@ -54,8 +56,6 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-
-    user = db.relationship('User', backref='posts')
 
     @property
     def friendly_date(self):
