@@ -40,6 +40,7 @@ class User(db.Model):
         u = self
         return f"<User id={u.id} first={u.first_name} last={u.last_name} image={u.image_url}>"
 
+
 class Post(db.Model):
     """Blog posts by users"""
     __tablename__ = 'posts'
@@ -66,3 +67,32 @@ class Post(db.Model):
     def __repr__(self):
         p = self
         return f"<Post id={p.id} title={p.title} content={p.content} created_at={p.created_at} user_id={p.user_id}>"
+
+
+class Tag(db.Model):
+    """"""
+    __tablename__ = "tags"
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    
+    name = db.Column(db.Text,
+                     nullable=False)
+
+    def __repr__(self):
+        t = self
+        return f"<Tag id={t.id} name={t.name}>"
+
+
+# class PostTag(db.Model):
+#     """"""
+#     __tablename__ = "posts_tags"
+
+#     post_id = db.Column(db.Integer, primary_key=True, db.ForeignKey('posts.id'), nullable=False)
+
+#     tag_id = db.Column(db.Integer, primary_key=True, db.ForeignKey('tags.id'), nullable=False)   
+
+#     def __repr__(self):
+#         pt = self
+#         return f"<PostTag post_id={pt.post_id} tag_id={pt.tag_id}>"
