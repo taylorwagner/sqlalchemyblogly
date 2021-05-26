@@ -85,14 +85,14 @@ class Tag(db.Model):
         return f"<Tag id={t.id} name={t.name}>"
 
 
-# class PostTag(db.Model):
-#     """"""
-#     __tablename__ = "posts_tags"
+class PostTag(db.Model):
+    """"""
+    __tablename__ = "posts_tags"
 
-#     post_id = db.Column(db.Integer, primary_key=True, db.ForeignKey('posts.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True, nullable=False)
 
-#     tag_id = db.Column(db.Integer, primary_key=True, db.ForeignKey('tags.id'), nullable=False)   
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True, nullable=False)   
 
-#     def __repr__(self):
-#         pt = self
-#         return f"<PostTag post_id={pt.post_id} tag_id={pt.tag_id}>"
+    def __repr__(self):
+        pt = self
+        return f"<PostTag post_id={pt.post_id} tag_id={pt.tag_id}>"
