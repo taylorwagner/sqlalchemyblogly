@@ -27,6 +27,12 @@ def homepage():
 
     return render_template('home.html', recent_posts=recent_posts)
 
+@app.errorhandler(404)
+def not_found(e):
+    """Custom 404 page"""
+
+    return render_template("404.html")
+
 
 #### Part 1 setting up Users and profile abilities
 
