@@ -13,7 +13,9 @@
     {% for p in recent_posts %}
     <h2>{{ p.title }}</h2>
     <p>{{ p.content }}</p>
-    <p>By {{p.user.full_name}} on {{p.friendly_date}}</p>
+    <p><small>
+        By {{p.user.full_name}} on {{p.friendly_date}}</small>
+    </p>
     {% endfor %}
 
     <div>
