@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template,  redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 
 app = Flask(__name__)
 
@@ -106,7 +106,7 @@ def users_destroy(user_id):
 
     return redirect("/users")
 
-#### Part 2 Starts Here
+#### Part 2 Starts Here - posting abilities
 
 @app.route('/users/<int:user_id>/posts/new')
 def new_post(user_id):
@@ -171,3 +171,13 @@ def post_destroy(post_id):
     flash(f"Post '{post.title}' is gone forever!!")
 
     return redirect(f"/users/{post.user_id}")
+
+#### Part 3 Starts here - tagging abilities
+
+@app.route('/tags')
+def list_tags(tag_id):
+    """Lists all tags, with links to the tag detail page."""
+
+    tag = Tag.query.get_or_404(tag_id)
+
+    return render_template('list-tags.html', tag=tag)

@@ -77,7 +77,7 @@ class Tag(db.Model):
                    primary_key=True,
                    autoincrement=True)
     
-    name = db.Column(db.Text,
+    name = db.Column(db.Text, unique=True,
                      nullable=False)
 
     def __repr__(self):
