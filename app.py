@@ -31,7 +31,7 @@ def homepage():
 def not_found(e):
     """Custom 404 page"""
 
-    return render_template("404.html")
+    return render_template("404.html"), 404
 
 
 #### Part 1 setting up Users and profile abilities
