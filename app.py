@@ -17,6 +17,19 @@ connect_db(app)
 db.create_all()
 
 
+#### Part 2 Further Study with Homepage
+
+@app.route('/')
+def homepage():
+    """the homepage to a page that shows the 5 most recent posts."""
+
+    recent_posts = Post.query.order_by(Post.id.desc()).limit(5)
+
+    return render_template('home.html', recent_posts=recent_posts)
+
+
+#### Part 1 setting up Users and profile abilities
+
 @app.route('/users')
 def list_users():
     """Shows list of all users in db"""
