@@ -80,6 +80,8 @@ class Tag(db.Model):
     name = db.Column(db.Text, unique=True,
                      nullable=False)
 
+    connect = db.relationship('PostTag', backref="tag")
+
     def __repr__(self):
         t = self
         return f"<Tag id={t.id} name={t.name}>"
