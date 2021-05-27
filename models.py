@@ -58,6 +58,8 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    connect = db.relationship('PostTag', backref="post")
+
     @property
     def friendly_date(self):
         """Return nicely-formatted date."""

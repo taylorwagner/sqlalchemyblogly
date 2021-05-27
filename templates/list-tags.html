@@ -9,8 +9,8 @@
 <body>
     <h1>Tags</h1>
   <ul>
-    {% for t in tag %}
-    <li><a href="/tags/{{t.id}}">{{ t.name }}</a></li>
+    {% for tag in tags %}
+    <li><a href="/tags/{{tag.id}}">{{ tag.name }}</a></li>
     {% endfor %}
   </ul>
 

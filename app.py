@@ -175,9 +175,9 @@ def post_destroy(post_id):
 #### Part 3 Starts here - tagging abilities
 
 @app.route('/tags')
-def list_tags(tag_id):
+def list_tags():
     """Lists all tags, with links to the tag detail page."""
 
-    tag = Tag.query.get_or_404(tag_id)
+    tags = Tag.query.order_by(Tag.name).all()
 
-    return render_template('list-tags.html', tag=tag)
+    return render_template('list-tags.html', tags=tags)
