@@ -185,8 +185,31 @@ def list_tags():
 
 @app.route('/tags/<int:tag_id>')
 def tag_details(tag_id):
-    """Show a post. Show buttons to edit and delete the post."""
+    """Show detail about a tag. Have links to edit form and to delete."""
 
     tag = Tag.query.get_or_404(tag_id)
 
     return render_template('show-tag.html', tag=tag)
+
+
+@app.route('/tags/new', methods=["GET"])
+def create_tag(tag_id):
+    """Shows a form to add a new tag."""
+
+    tag = Tag.query.get_or_404(tag_id)
+    
+    return render_template('new-tag.html')
+
+
+@app.route('/tags/new', methods=["POST"])
+def new_tag(tag_id):
+    """Process add form, adds tag, and redirect to tag list."""
+
+    tag = Tag.query.get_or_404(tag_id)
+    name = request.form["name"]
+
+    new_tag = Tag(name=name)
+    db.session.add(new_tag)
+    db.session.commit()
+
+    return redirect('/tags')
