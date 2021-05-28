@@ -181,3 +181,12 @@ def list_tags():
     tags = Tag.query.order_by(Tag.name).all()
 
     return render_template('list-tags.html', tags=tags)
+
+
+@app.route('/tags/<int:tag_id>')
+def tag_details(tag_id):
+    """Show a post. Show buttons to edit and delete the post."""
+
+    tag = Tag.query.get_or_404(tag_id)
+
+    return render_template('show-tag.html', tag=tag)
