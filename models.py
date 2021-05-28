@@ -58,8 +58,6 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    connect = db.relationship('PostTag', backref="post")
-
     tags = db.relationship('Tag', secondary='posts_tags', backref='posts')
 
     @property
@@ -83,8 +81,6 @@ class Tag(db.Model):
     
     name = db.Column(db.Text, unique=True,
                      nullable=False)
-
-    connect = db.relationship('PostTag', backref="tag")
 
     def __repr__(self):
         t = self
