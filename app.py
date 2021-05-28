@@ -193,19 +193,15 @@ def tag_details(tag_id):
 
 
 @app.route('/tags/new', methods=["GET"])
-def create_tag(tag_id):
+def create_tag():
     """Shows a form to add a new tag."""
-
-    tag = Tag.query.get_or_404(tag_id)
     
-    return render_template('new-tag.html', tag=tag)
+    return render_template('new-tag.html')
 
 
 @app.route('/tags/new', methods=["POST"])
-def new_tag(tag_id):
+def new_tag():
     """Process add form, adds tag, and redirect to tag list."""
-
-    tag = Tag.query.get_or_404(tag_id)
     name = request.form["name"]
 
     new_tag = Tag(name=name)
