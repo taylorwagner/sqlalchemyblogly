@@ -198,7 +198,7 @@ def create_tag(tag_id):
 
     tag = Tag.query.get_or_404(tag_id)
     
-    return render_template('new-tag.html')
+    return render_template('new-tag.html', tag=tag)
 
 
 @app.route('/tags/new', methods=["POST"])
