@@ -61,7 +61,7 @@ tp1 = PostTag(post_id=1, tag_id=4)
 tp2 = PostTag(post_id=2, tag_id=4)
 tp3 = PostTag(post_id=2, tag_id=5)
 tp4 = PostTag(post_id=4, tag_id=5)
-tp5 = PostTag(post_id=9, tag_id=1)
+tp5 = PostTag(post_id=6, tag_id=1)
 
 # Add new objects to session, so they'll persist
 db.session.add_all([tp1, tp2, tp3, tp4, tp5])
