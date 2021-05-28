@@ -213,3 +213,38 @@ def new_tag(tag_id):
     db.session.commit()
 
     return redirect('/tags')
+
+
+@app.route('/tags/<int:tag_id>/edit')
+def tag_edit(tag_id):
+    """Show edit form for a tag."""
+
+    tag = Tag.query.get_or_404(tag_id)
+
+    return render_template('edit-tag.html', tag=tag)
+
+
+@app.route('/tags/<int:tag_id>/edit', methods=["POST"])
+def handle_tag_update(tag_id):
+    """Process edit form, edit tag, and redirects to the tags list."""
+
+    tag = Tag.query.get_or_404(tag_id)
+    tag.name = request.form['name']
+
+    db.session.add(tag)
+    db.session.commit()
+    flash(f"Tag '{tag.name}' edited!")
+
+    return redirect(f"/tags")
+
+
+@app.route('/tags/<int:tag_id>/delete', methods=["POST"])
+def tag_destroy(tag_id):
+    """Delete a tag."""
+
+    tag = Tag.query.get_or_404(tag_id)
+    db.session.delete(tag)
+    db.session.commit()
+    flash(f"Tag '{tag.name}' is gone forever!!")
+
+    return redirect(f"/tags")
