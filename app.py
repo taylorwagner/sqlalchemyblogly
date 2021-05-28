@@ -179,7 +179,7 @@ def list_tags():
     """Lists all tags, with links to the tag detail page."""
 
     tags = Tag.query.order_by(Tag.name).all()
-    print(tags)
+ 
     return render_template('list-tags.html', tags=tags)
 
 
