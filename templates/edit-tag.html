@@ -20,6 +20,16 @@
     </div>
   </div>
 
+  <div>
+    <label for="posts">Posts</label>
+    {% for post in posts %}
+    <div>
+      <input type="checkbox" value="{{post.id}}"
+             id="post_{{post.id}}" {% if post in tag.posts %} checked {% endif %} name="posts"> <label for="post_{{ post.id }}">{{ post.title }}</label><br>
+    </div>
+    {% endfor %}
+  </div>
+
 
   <div>
     <a href="/tags">Cancel</a>
