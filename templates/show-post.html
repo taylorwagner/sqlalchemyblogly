@@ -15,10 +15,11 @@
             <p><i>By {{post.user.first_name}} {{post.user.last_name}}</i></p>
 
             <h4>Tags:</h4>
+            {% for t in post.tags %}
             <ul>
-                {% for t in post.tag%}
-                <li></li>
+                <li><a href="/tags/{{t.id}}">{{ t.name }}</a></li>
             </ul>
+            {% endfor %}
 
             <form action="">
                 <button formaction="/users/{{post.user_id}}">Cancel</button>
