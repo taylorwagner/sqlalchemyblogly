@@ -20,6 +20,18 @@
   </div>
 
   <div>
+    <label for="posts">Posts</label>
+    {% for post in posts %}
+    <div>
+      <input type="checkbox"
+             id="post_{{post.id}}"
+             name="posts"
+             value="{{post.id}}"> <label for="post_{{ post.id }}">{{ post.title }}</label><br>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div>
     <a href="/tags">Cancel</a>
     <button type="submit">Create Tag!</button>
   </div>
