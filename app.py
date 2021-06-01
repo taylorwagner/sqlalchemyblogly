@@ -23,9 +23,9 @@ db.create_all()
 def homepage():
     """the homepage to a page that shows the 5 most recent posts."""
 
-    recent_posts = Post.query.order_by(Post.id.desc()).limit(5)
+    posts = Post.query.order_by(Post.id.desc()).limit(5)
 
-    return render_template('home.html', recent_posts=recent_posts)
+    return render_template('home.html', posts=posts)
 
 @app.errorhandler(404)
 def not_found(e):
