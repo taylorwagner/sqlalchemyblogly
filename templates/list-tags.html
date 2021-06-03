@@ -14,6 +14,10 @@
     {% endfor %}
   </ul>
 
+  {% for msg in get_flashed_messages() %}
+  <div><i>{{ msg }}</i></div>
+  {% endfor %}
+
   <div>
     <p><a href="/tags/new">Add New Tag</a></p>
     <p><a href="/users">View All Users</a></p>

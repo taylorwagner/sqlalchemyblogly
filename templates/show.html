@@ -17,6 +17,10 @@
         <div>
             <h1>{{user.full_name}}</h1>
 
+            {% for msg in get_flashed_messages() %}
+            <div><i>{{ msg }}</i></div>
+            {% endfor %}
+
             <form action="">
                 <button formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
 
